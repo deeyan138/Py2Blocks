@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Py2Blocks</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="app-body">
+
+  <header class="topbar">
+    <div class="brand"><span class="logo">{ }</span><span>Py2<b>Blocks</b></span></div>
+
+    <form id="promptForm" class="prompt-bar" autocomplete="off">
+      <span class="prompt-sym" aria-hidden="true">&gt;</span>
+      <input id="promptInput" type="text" maxlength="500" placeholder="Ask Gemma: create a program to add two numbers" aria-label="Describe the program you want">
+      <button id="genBtn" class="btn primary" type="submit">Generate</button>
+    </form>
+
+    <div class="top-actions">
+      <button id="runBtn" class="btn run" type="button" title="Ctrl + Enter">Run</button>
+      <button id="arrangeBtn" class="btn ghost" type="button" title="Tidy the blocks">Arrange</button>
+      <button id="clearBtn" class="btn ghost" type="button">Clear</button>
+      <span id="userChip" class="chip"></span>
+      <button id="logoutBtn" class="btn ghost" type="button">Log out</button>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="pane blocks-pane" aria-label="Blocks">
+      <div class="pane-head"><span class="file">blocks.workspace</span><span id="blockStat" class="muted"></span></div>
+      <div class="pane-body"><div id="blocklyDiv"></div></div>
+    </section>
+
+    <aside class="right">
+      <section class="pane code-pane" aria-label="Python code">
+        <div class="pane-head"><span class="file">main.py</span><span id="syncState" class="muted"></span></div>
+        <div class="editor">
+          <pre id="gutter" aria-hidden="true">1</pre>
+          <div class="code-wrap">
+            <pre id="hl" aria-hidden="true"></pre>
+            <textarea id="code" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="Python code editor"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <section class="pane term-pane" aria-label="Output and assistant">
+        <div class="pane-head tabs-head">
+          <button class="ptab active" type="button" data-tab="out">Output</button>
+          <button class="ptab" type="button" data-tab="stdin">Input</button>
+          <button class="ptab" type="button" data-tab="ask">Ask Gemma</button>
+          <span id="runMode" class="muted"></span>
+        </div>
+
+        <div id="tab-out" class="tab-body"><pre id="term" class="term"><span class="dim">Press Run. Gemma predicts the output; nothing is executed on the server.</span></pre></div>
+
+        <div id="tab-stdin" class="tab-body hidden">
+          <textarea id="stdin" class="stdin" spellcheck="false" placeholder="Values for input(), one per line"></textarea>
+        </div>
+
+        <div id="tab-ask" class="tab-body hidden chat-body">
+          <div id="chatLog" class="chat-log"></div>
+          <div class="chat-tools"><button id="explainBtn" class="btn ghost small" type="button">Explain my program</button></div>
+          <form id="askForm" class="chat-form" autocomplete="off">
+            <input id="askInput" type="text" maxlength="800" placeholder="Ask about this program">
+            <button class="btn primary small" type="submit">Send</button>
+          </form>
+        </div>
+      </section>
+    </aside>
+  </main>
+
+  <footer class="statusbar">
+    <span id="gemmaState"><i class="dot"></i> Gemma</span>
+    <span id="bufferStat"></span>
+    <span class="spacer"></span>
+    <span>Python 3 &middot; UTF-8</span>
+  </footer>
+
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <h3 id="modalTitle">Gemma is taking too long</h3>
+      <p id="modalText"></p>
+      <div class="modal-actions">
+        <button id="waitBtn" class="btn ghost" type="button">Keep waiting</button>
+        <button id="manualBtn" class="btn primary" type="button">Process manually</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/blockly@11.2.1/blockly.min.js"></script>
+  <script src="/pyengine.js"></script>
+  <script src="/blocks.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>

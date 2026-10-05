@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Py2Blocks - Log in</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="login-body">
+  <main class="login-card">
+    <div class="brand big"><span class="logo">{ }</span><span>Py2<b>Blocks</b></span></div>
+    <p class="tagline">Describe it. See the blocks. Read the Python.</p>
+
+    <div class="tabs" role="tablist">
+      <button class="tab active" type="button" data-mode="login" role="tab">Log in</button>
+      <button class="tab" type="button" data-mode="register" role="tab">Create account</button>
+    </div>
+
+    <form id="authForm" novalidate>
+      <label for="username">Username</label>
+      <input id="username" name="username" type="text" autocomplete="username" maxlength="24" autofocus>
+
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" autocomplete="current-password" maxlength="100">
+
+      <div id="confirmRow" class="hidden">
+        <label for="confirm">Confirm password</label>
+        <input id="confirm" name="confirm" type="password" autocomplete="new-password" maxlength="100">
+      </div>
+
+      <p id="authError" class="form-error" role="alert"></p>
+      <button id="authSubmit" class="btn primary wide" type="submit">Log in</button>
+    </form>
+  </main>
+  <script src="/auth.js"></script>
+</body>
+</html>

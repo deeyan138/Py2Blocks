@@ -1,0 +1,17 @@
+{
+  "name": "py2blocks",
+  "version": "1.0.0",
+  "description": "Prompt -> Gemma -> Blockly blocks + Python -> Gemma-computed output",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google/genai": "^2.27.0",
+    "dotenv": "^18.0.5"
+  }
+}
